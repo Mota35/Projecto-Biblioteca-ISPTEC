@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Biblioteca System",
+            "request": "launch",
+            "mainClass": "isptec.biblioteca.Program",
+            "projectName": "biblioteca",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "run"
+        }
+    ]
+}

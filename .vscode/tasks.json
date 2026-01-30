@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "cd",
+            "args": [
+                "biblioteca/src/main/java",
+                "&&",
+                "javac",
+                "-d",
+                "../../../../../../target/classes",
+                "isptec/biblioteca/*.java",
+                "isptec/biblioteca/domain/entities/*.java",
+                "isptec/biblioteca/domain/enumeracao/*.java",
+                "isptec/biblioteca/service/*.java",
+                "isptec/biblioteca/service/impl/*.java",
+                "isptec/biblioteca/ui/*.java"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$javac"
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "cd",
+            "args": [
+                "biblioteca",
+                "&&",
+                "java",
+                "-cp",
+                "target/classes",
+                "isptec.biblioteca.Program"
+            ],
+            "dependsOn": "compile",
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}
