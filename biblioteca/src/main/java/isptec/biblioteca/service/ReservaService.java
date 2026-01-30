@@ -1,5 +1,6 @@
 package main.java.isptec.biblioteca.service;
 
+import java.util.List;
 import main.java.isptec.biblioteca.domain.entities.Reserva;
 
 public interface ReservaService {

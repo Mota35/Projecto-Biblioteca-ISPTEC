@@ -1,6 +1,7 @@
 package main.java.isptec.biblioteca.domain.entities;
 
 import java.util.List;
+import main.java.isptec.biblioteca.domain.enumeracao.EstadoLivro;
 
 public class Livro {
 
