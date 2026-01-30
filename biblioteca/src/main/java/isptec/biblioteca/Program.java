@@ -1,7 +1,9 @@
 package isptec.biblioteca;
 
+import isptec.biblioteca.ui.LoginUI;
+
 public class Program {
     public static void main(String[] args) {
-        System.out.println("Bem-vindo à Biblioteca ISPTEC!");
+        LoginUI.launchLogin(args);
     }
 }
