@@ -1,4 +1,4 @@
-package main.java.isptec.biblioteca.domain.enumeracao;
+package isptec.biblioteca.domain.enumeracao;
 
 public enum EstadoLivro {
     DISPONIVEL,

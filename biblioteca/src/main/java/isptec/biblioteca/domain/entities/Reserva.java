@@ -1,4 +1,4 @@
-package main.java.isptec.biblioteca.domain.entities;
+package isptec.biblioteca.domain.entities;
 
 import java.time.LocalDate;
 

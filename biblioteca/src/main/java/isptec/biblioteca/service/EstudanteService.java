@@ -1,8 +1,8 @@
-package main.java.isptec.biblioteca.service;
+package isptec.biblioteca.service;
 
 import java.util.List;
 
-import main.java.isptec.biblioteca.domain.entities.Estudante;
+import isptec.biblioteca.domain.entities.Estudante;
 
 public interface EstudanteService {
     void cadastrarEstudante(Estudante estudante);

@@ -1,7 +1,7 @@
-package main.java.isptec.biblioteca.domain.entities;
+package isptec.biblioteca.domain.entities;
 
 import java.time.LocalDate;
-import main.java.isptec.biblioteca.domain.enumeracao.EstadoEmprestimo;
+import isptec.biblioteca.domain.enumeracao.EstadoEmprestimo;
 
 public class Emprestimo {
 

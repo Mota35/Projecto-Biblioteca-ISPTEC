@@ -1,10 +1,12 @@
-package main.java.isptec.biblioteca.service;
+package isptec.biblioteca.service;
 
 import java.util.List;
-import main.java.isptec.biblioteca.domain.entities.Reserva;
+import isptec.biblioteca.domain.entities.Reserva;
+import isptec.biblioteca.domain.entities.Estudante;
+import isptec.biblioteca.domain.entities.Livro;
 
 public interface ReservaService {
-    void reservarLivro(Reserva reserva);
+    void reservarLivro(Estudante membro, Livro livro);
     void cancelarReserva(int reservaId);
     List<Reserva> listarReservas();
 }
