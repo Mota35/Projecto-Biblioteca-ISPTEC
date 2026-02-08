@@ -13,13 +13,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class EmprestimosView {
-    private Stage stage;
-    private BorderPane mainLayout;
-    private LibraryService libraryService;
+    private final BorderPane mainLayout;
+    private final LibraryService libraryService;
     private TableView<Emprestimo> table;
 
     public EmprestimosView(Stage stage, BorderPane mainLayout) {
-        this.stage = stage;
         this.mainLayout = mainLayout;
         this.libraryService = LibraryService.getInstance();
     }

@@ -1,7 +1,6 @@
 package isptec.biblioteca.views;
 
 import isptec.biblioteca.model.Membro;
-import isptec.biblioteca.service.AuthService;
 import isptec.biblioteca.service.LibraryService;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -15,13 +14,11 @@ import javafx.stage.Stage;
 import java.util.UUID;
 
 public class MembrosView {
-    private Stage stage;
-    private BorderPane mainLayout;
-    private LibraryService libraryService;
+    private final BorderPane mainLayout;
+    private final LibraryService libraryService;
     private TableView<Membro> table;
 
     public MembrosView(Stage stage, BorderPane mainLayout) {
-        this.stage = stage;
         this.mainLayout = mainLayout;
         this.libraryService = LibraryService.getInstance();
     }
@@ -149,8 +146,8 @@ public class MembrosView {
                 }
                 
                 // Gera email automaticamente
-                String email = AuthService.gerarEmailEstudante(matricula);
-                
+                String email = matricula + "@isptec.co.ao";
+
                 // Verifica se já existe membro com essa matrícula
                 for (Membro m : libraryService.listarMembros()) {
                     if (m.getMatricula().equals(matricula)) {

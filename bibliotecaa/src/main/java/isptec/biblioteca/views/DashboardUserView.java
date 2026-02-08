@@ -1,5 +1,6 @@
 package isptec.biblioteca.views;
 
+import isptec.biblioteca.ServiceFactory;
 import isptec.biblioteca.model.Emprestimo;
 import isptec.biblioteca.model.Reserva;
 import isptec.biblioteca.service.AuthService;
@@ -9,25 +10,25 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class DashboardUserView {
-    private Stage stage;
-    private AuthService authService;
-    private LibraryService libraryService;
-    private BorderPane mainLayout;
+    private final Stage stage;
+    private final AuthService authService;
+    private final LibraryService libraryService;
+    private final BorderPane mainLayout;
 
     public DashboardUserView(Stage stage) {
         this.stage = stage;
-        this.authService = AuthService.getInstance();
+        this.authService = ServiceFactory.getInstance().getAuthService();
         this.libraryService = LibraryService.getInstance();
         this.mainLayout = new BorderPane();
     }
@@ -52,7 +53,7 @@ public class DashboardUserView {
         HBox logoBox = new HBox(10);
         logoBox.setAlignment(Pos.CENTER_LEFT);
         ImageView logoImage = new ImageView(
-        new Image(getClass().getResourceAsStream("/imagens/logo_2.png"))
+        new Image(Objects.requireNonNull(getClass().getResourceAsStream("/imagens/logo_2.png")))
         );
 
         logoImage.setFitWidth(34);   // ajusta se quiseres maior/menor
@@ -148,7 +149,7 @@ public class DashboardUserView {
         subtitle.setTextFill(Color.web("#6b7280"));
 
         // Estatísticas do usuário
-        String userId = authService.getUsuarioLogado().getId();
+        String userId = String.valueOf(authService.getUsuarioLogado().getId());
         List<Emprestimo> meusEmprestimos = libraryService.listarEmprestimosPorMembro(userId);
         List<Reserva> minhasReservas = libraryService.listarReservasPorMembro(userId);
         int reservasPendentes = (int) minhasReservas.stream().filter(Reserva::isPendente).count();

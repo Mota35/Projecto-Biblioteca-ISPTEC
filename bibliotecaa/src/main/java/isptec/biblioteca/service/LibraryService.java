@@ -43,11 +43,50 @@ public class LibraryService {
             "978-8576050841", "Ciência Moderna", 2005, "Algoritmos", 4, 
             "Introdução completa a estruturas de dados"));
 
-        // Membros de exemplo com email correto
-        adicionarMembro(new Membro("1", "João Silva", "20230001@isptec.co.ao", 
+        adicionarLivro(new Livro("4", "The Pragmatic Programmer", "David Thomas", "978-0135957059",
+            "Addison-Wesley", 2019, "Programação", 3,
+            "Seu caminho para a maestria em programação"));
+
+        adicionarLivro(new Livro("5", "Introduction to Algorithms", "Thomas H. Cormen", "978-0262033848",
+            "MIT Press", 2009, "Algoritmos", 2,
+            "O texto mais completo sobre algoritmos"));
+
+        adicionarLivro(new Livro("6", "Engenharia de Software", "Ian Sommerville", "978-8579361081",
+            "Pearson", 2011, "Engenharia de Software", 6,
+            "Fundamentos de engenharia de software"));
+
+        adicionarLivro(new Livro("7", "Redes de Computadores", "Andrew Tanenbaum", "978-8582604274",
+            "Pearson", 2011, "Redes", 4,
+            "Conceitos fundamentais de redes de computadores"));
+
+        adicionarLivro(new Livro("8", "Sistemas Operacionais Modernos", "Andrew Tanenbaum", "978-8543005676",
+            "Pearson", 2015, "Sistemas Operacionais", 3,
+            "Princípios de sistemas operacionais"));
+
+        adicionarLivro(new Livro("9", "Inteligência Artificial", "Stuart Russell", "978-8535237016",
+            "Campus", 2013, "Inteligência Artificial", 2,
+            "Uma abordagem moderna à IA"));
+
+        adicionarLivro(new Livro("10", "Banco de Dados", "Abraham Silberschatz", "978-8535245356",
+            "Campus", 2012, "Banco de Dados", 5,
+            "Conceitos de sistemas de banco de dados"));
+
+        // Membros de exemplo
+        adicionarMembro(new Membro("1", "João Silva", "20230001@isptec.co.ao",
             "923456789", "20230001"));
         adicionarMembro(new Membro("2", "Maria Santos", "20230002@isptec.co.ao", 
             "923456788", "20230002"));
+        adicionarMembro(new Membro("3", "Pedro Costa", "20230003@isptec.co.ao",
+            "923456787", "20230003"));
+        adicionarMembro(new Membro("4", "Ana Fernandes", "20230004@isptec.co.ao",
+            "923456786", "20230004"));
+
+        // Criar um empréstimo de exemplo
+        realizarEmprestimo("1", "1"); // João emprestou Clean Code
+        realizarEmprestimo("2", "2"); // Maria emprestou Design Patterns
+
+        // Criar uma reserva de exemplo
+        realizarReserva("3", "3"); // Pedro reservou Estruturas de Dados
     }
 
     // === LIVROS ===

@@ -1,5 +1,6 @@
 package isptec.biblioteca.views;
 
+import isptec.biblioteca.ServiceFactory;
 import isptec.biblioteca.service.AuthService;
 import isptec.biblioteca.service.LibraryService;
 import javafx.geometry.Insets;
@@ -7,24 +8,25 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 
 public class DashboardAdminView {
-    private Stage stage;
-    private AuthService authService;
-    private LibraryService libraryService;
-    private BorderPane mainLayout;
+    private final Stage stage;
+    private final AuthService authService;
+    private final LibraryService libraryService;
+    private final BorderPane mainLayout;
 
     public DashboardAdminView(Stage stage) {
         this.stage = stage;
-        this.authService = AuthService.getInstance();
+        this.authService = ServiceFactory.getInstance().getAuthService();
         this.libraryService = LibraryService.getInstance();
         this.mainLayout = new BorderPane();
     }
@@ -53,7 +55,7 @@ public class DashboardAdminView {
         HBox logoBox = new HBox(10);
         logoBox.setAlignment(Pos.CENTER_LEFT);
         ImageView logoImage = new ImageView(
-        new Image(getClass().getResourceAsStream("/imagens/logo_2.png"))
+        new Image(Objects.requireNonNull(getClass().getResourceAsStream("/imagens/logo_2.png")))
         );
 
         logoImage.setFitWidth(34);   // ajusta se quiseres maior/menor

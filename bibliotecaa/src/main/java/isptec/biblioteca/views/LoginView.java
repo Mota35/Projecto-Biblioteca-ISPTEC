@@ -1,26 +1,30 @@
 package isptec.biblioteca.views;
 
+import isptec.biblioteca.ServiceFactory;
+import isptec.biblioteca.enumeracao.Perfil;
+import isptec.biblioteca.model.entities.Pessoa;
 import isptec.biblioteca.service.AuthService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 public class LoginView {
-    private Stage stage;
-    private AuthService authService;
+    private final Stage stage;
+    private final AuthService authService;
 
     public LoginView(Stage stage) {
         this.stage = stage;
-        this.authService = AuthService.getInstance();
+        this.authService = ServiceFactory.getInstance().getAuthService();
     }
 
     public Scene createScene() {
@@ -37,7 +41,7 @@ public class LoginView {
 
         // Logo e Título
         ImageView logoImage = new ImageView(
-        new Image(getClass().getResourceAsStream("/imagens/logo_2.png"))
+        new Image(Objects.requireNonNull(getClass().getResourceAsStream("/imagens/logo_2.png")))
         );
 
         logoImage.setFitWidth(80);   // ajusta se quiseres maior/menor
@@ -117,17 +121,10 @@ public class LoginView {
                 return;
             }
 
-            if (authService.login(email, senha)) {
-                // Verifica se é o primeiro login e exige troca de senha
-                if (authService.isPrimeiraSenha()) {
-                    String novaSenha = TrocarSenhaDialog.mostrar();
-                    if (novaSenha != null) {
-                        authService.alterarSenha(senha, novaSenha);
-                    }
-                }
-                
-                // Login bem-sucedido
-                if (authService.isAdministrador()) {
+            Pessoa usuario = authService.login(email, senha);
+            if (usuario != null) {
+                // Login bem-sucedido - verificar perfil
+                if (usuario.getPerfil() == Perfil.BIBLIOTECARIO) {
                     new DashboardAdminView(stage).show();
                 } else {
                     new DashboardUserView(stage).show();
@@ -172,8 +169,7 @@ public class LoginView {
         stackPane.setPadding(new Insets(40));
         root.setCenter(stackPane);
 
-        Scene scene = new Scene(root, 800, 600);
-        return scene;
+        return new Scene(root, 800, 600);
     }
 
     public void show() {

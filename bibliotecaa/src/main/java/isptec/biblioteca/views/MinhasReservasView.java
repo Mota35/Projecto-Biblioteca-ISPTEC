@@ -1,5 +1,6 @@
 package isptec.biblioteca.views;
 
+import isptec.biblioteca.ServiceFactory;
 import isptec.biblioteca.model.Reserva;
 import isptec.biblioteca.service.AuthService;
 import isptec.biblioteca.service.LibraryService;
@@ -13,16 +14,14 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class MinhasReservasView {
-    private Stage stage;
-    private BorderPane mainLayout;
-    private LibraryService libraryService;
-    private AuthService authService;
+    private final BorderPane mainLayout;
+    private final LibraryService libraryService;
+    private final AuthService authService;
 
     public MinhasReservasView(Stage stage, BorderPane mainLayout) {
-        this.stage = stage;
         this.mainLayout = mainLayout;
         this.libraryService = LibraryService.getInstance();
-        this.authService = AuthService.getInstance();
+        this.authService = ServiceFactory.getInstance().getAuthService();
     }
 
     public void show() {
@@ -37,7 +36,7 @@ public class MinhasReservasView {
         Label title = new Label("Minhas Reservas");
         title.setFont(Font.font("System", FontWeight.BOLD, 28));
 
-        String userId = authService.getUsuarioLogado().getId();
+        String userId = String.valueOf(authService.getUsuarioLogado().getId());
         List<Reserva> minhasReservas = libraryService.listarReservasPorMembro(userId);
         List<Reserva> pendentes = minhasReservas.stream()
             .filter(Reserva::isPendente)

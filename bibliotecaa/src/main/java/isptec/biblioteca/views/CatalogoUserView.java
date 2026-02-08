@@ -1,5 +1,6 @@
 package isptec.biblioteca.views;
 
+import isptec.biblioteca.ServiceFactory;
 import isptec.biblioteca.model.Livro;
 import isptec.biblioteca.service.AuthService;
 import isptec.biblioteca.service.LibraryService;
@@ -11,17 +12,15 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class CatalogoUserView {
-    private Stage stage;
-    private BorderPane mainLayout;
-    private LibraryService libraryService;
-    private AuthService authService;
+    private final BorderPane mainLayout;
+    private final LibraryService libraryService;
+    private final AuthService authService;
     private VBox catalogoBox;
 
     public CatalogoUserView(Stage stage, BorderPane mainLayout) {
-        this.stage = stage;
         this.mainLayout = mainLayout;
         this.libraryService = LibraryService.getInstance();
-        this.authService = AuthService.getInstance();
+        this.authService = ServiceFactory.getInstance().getAuthService();
     }
 
     public void show() {
@@ -119,7 +118,7 @@ public class CatalogoUserView {
             Button solicitarBtn = new Button("Solicitar Empréstimo");
             solicitarBtn.setStyle("-fx-background-color: #2563eb; -fx-text-fill: white; -fx-cursor: hand;");
             solicitarBtn.setOnAction(e -> {
-                String userId = authService.getUsuarioLogado().getId();
+                String userId = String.valueOf(authService.getUsuarioLogado().getId());
                 boolean sucesso = libraryService.realizarEmprestimo(livro.getId(), userId);
                 if (sucesso) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -145,7 +144,7 @@ public class CatalogoUserView {
             Button reservarBtn = new Button("Entrar na Fila de Reservas");
             reservarBtn.setStyle("-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-cursor: hand;");
             reservarBtn.setOnAction(e -> {
-                String userId = authService.getUsuarioLogado().getId();
+                String userId = String.valueOf(authService.getUsuarioLogado().getId());
                 boolean sucesso = libraryService.realizarReserva(livro.getId(), userId);
                 if (sucesso) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
