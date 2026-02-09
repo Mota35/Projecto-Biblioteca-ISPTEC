@@ -50,6 +50,7 @@ public class DashboardUserView {
         sidebar.setStyle("-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 1 0 0;");
         sidebar.setPadding(new Insets(20));
 
+
         HBox logoBox = new HBox(10);
         logoBox.setAlignment(Pos.CENTER_LEFT);
         ImageView logoImage = new ImageView(
