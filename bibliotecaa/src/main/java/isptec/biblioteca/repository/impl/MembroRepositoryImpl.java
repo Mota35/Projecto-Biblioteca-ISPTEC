@@ -7,6 +7,7 @@ import isptec.biblioteca.repository.MembroRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Implementação do repositório de Membro usando DAO.
@@ -43,12 +44,12 @@ public class MembroRepositoryImpl implements MembroRepository {
     }
 
     @Override
-    public Membro findById(Integer id) {
+    public Optional<Membro> findById(Integer id) {
         try {
-            return membroDAO.findById(id);
+            return Optional.ofNullable(membroDAO.findById(id));
         } catch (SQLException e) {
             System.err.println("Erro ao buscar membro por ID: " + e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -63,11 +64,18 @@ public class MembroRepositoryImpl implements MembroRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         try {
             membroDAO.delete(id);
         } catch (SQLException e) {
             System.err.println("Erro ao deletar membro: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void delete(Membro membro) {
+        if (membro != null) {
+            deleteById(membro.getId());
         }
     }
 
@@ -123,7 +131,7 @@ public class MembroRepositoryImpl implements MembroRepository {
     }
 
     @Override
-    public List<Membro> findByNome(String nome) {
+    public List<Membro> findByNomeContaining(String nome) {
         try {
             List<Membro> todos = membroDAO.findAll();
             List<Membro> resultado = new ArrayList<>();
@@ -142,7 +150,7 @@ public class MembroRepositoryImpl implements MembroRepository {
     }
 
     @Override
-    public List<Membro> findAtivos() {
+    public List<Membro> findComEmprestimosAtivos() {
         try {
             return membroDAO.findAtivos();
         } catch (SQLException e) {
@@ -165,6 +173,24 @@ public class MembroRepositoryImpl implements MembroRepository {
             return bloqueados;
         } catch (SQLException e) {
             System.err.println("Erro ao buscar membros bloqueados: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Membro> findComMultasPendentes() {
+        try {
+            List<Membro> todos = membroDAO.findAll();
+            List<Membro> comMultas = new ArrayList<>();
+
+            for (Membro membro : todos) {
+                if (membro.getMultaPendente() > 0) {
+                    comMultas.add(membro);
+                }
+            }
+            return comMultas;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar membros com multas pendentes: " + e.getMessage());
             return new ArrayList<>();
         }
     }

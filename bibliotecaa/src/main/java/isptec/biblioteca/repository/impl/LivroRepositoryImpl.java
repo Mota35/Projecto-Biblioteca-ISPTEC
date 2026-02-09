@@ -7,6 +7,7 @@ import isptec.biblioteca.repository.LivroRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Implementação do repositório de Livro usando DAO.
@@ -43,12 +44,12 @@ public class LivroRepositoryImpl implements LivroRepository {
     }
 
     @Override
-    public Livro findById(Integer id) {
+    public Optional<Livro> findById(Integer id) {
         try {
-            return livroDAO.findById(id);
+            return Optional.ofNullable(livroDAO.findById(id));
         } catch (SQLException e) {
             System.err.println("Erro ao buscar livro por ID: " + e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -63,11 +64,18 @@ public class LivroRepositoryImpl implements LivroRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         try {
             livroDAO.delete(id);
         } catch (SQLException e) {
             System.err.println("Erro ao deletar livro: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void delete(Livro livro) {
+        if (livro != null) {
+            deleteById(livro.getId());
         }
     }
 
@@ -152,7 +160,6 @@ public class LivroRepositoryImpl implements LivroRepository {
         }
     }
 
-    @Override
     public List<Livro> findByEditora(String editora) {
         try {
             List<Livro> todos = livroDAO.findAll();
@@ -172,7 +179,6 @@ public class LivroRepositoryImpl implements LivroRepository {
         }
     }
 
-    @Override
     public List<Livro> findByAno(int ano) {
         try {
             List<Livro> todos = livroDAO.findAll();
@@ -187,6 +193,34 @@ public class LivroRepositoryImpl implements LivroRepository {
         } catch (SQLException e) {
             System.err.println("Erro ao buscar livros por ano: " + e.getMessage());
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Livro> findEmprestados() {
+        try {
+            List<Livro> todos = livroDAO.findAll();
+            List<Livro> resultado = new ArrayList<>();
+
+            for (Livro livro : todos) {
+                if (livro.getQuantidadeDisponivel() < livro.getQuantidadeTotal()) {
+                    resultado.add(livro);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar livros emprestados: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public long countDisponiveis() {
+        try {
+            return livroDAO.findDisponiveis().size();
+        } catch (SQLException e) {
+            System.err.println("Erro ao contar livros disponíveis: " + e.getMessage());
+            return 0;
         }
     }
 }

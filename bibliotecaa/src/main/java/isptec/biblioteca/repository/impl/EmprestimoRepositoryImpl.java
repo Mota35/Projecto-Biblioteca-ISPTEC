@@ -7,8 +7,10 @@ import isptec.biblioteca.model.entities.Membro;
 import isptec.biblioteca.repository.EmprestimoRepository;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Implementação do repositório de Empréstimo usando DAO.
@@ -45,12 +47,12 @@ public class EmprestimoRepositoryImpl implements EmprestimoRepository {
     }
 
     @Override
-    public Emprestimo findById(Integer id) {
+    public Optional<Emprestimo> findById(Integer id) {
         try {
-            return emprestimoDAO.findById(id);
+            return Optional.ofNullable(emprestimoDAO.findById(id));
         } catch (SQLException e) {
             System.err.println("Erro ao buscar empréstimo por ID: " + e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -65,11 +67,18 @@ public class EmprestimoRepositoryImpl implements EmprestimoRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         try {
             emprestimoDAO.delete(id);
         } catch (SQLException e) {
             System.err.println("Erro ao deletar empréstimo: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void delete(Emprestimo emprestimo) {
+        if (emprestimo != null) {
+            deleteById(emprestimo.getId());
         }
     }
 
@@ -151,6 +160,64 @@ public class EmprestimoRepositoryImpl implements EmprestimoRepository {
         } catch (SQLException e) {
             System.err.println("Erro ao buscar empréstimos ativos por membro: " + e.getMessage());
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Emprestimo> findByDataDevolucaoPrevista(LocalDate data) {
+        try {
+            List<Emprestimo> todos = emprestimoDAO.findAtivos();
+            List<Emprestimo> resultado = new ArrayList<>();
+            for (Emprestimo emp : todos) {
+                if (emp.getDataDevolucaoPrevista() != null &&
+                    emp.getDataDevolucaoPrevista().equals(data)) {
+                    resultado.add(emp);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar empréstimos por data de devolução: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Emprestimo> findByPeriodo(LocalDate inicio, LocalDate fim) {
+        try {
+            List<Emprestimo> todos = emprestimoDAO.findAll();
+            List<Emprestimo> resultado = new ArrayList<>();
+            for (Emprestimo emp : todos) {
+                LocalDate dataEmp = emp.getDataEmprestimo();
+                if (dataEmp != null &&
+                    !dataEmp.isBefore(inicio) &&
+                    !dataEmp.isAfter(fim)) {
+                    resultado.add(emp);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar empréstimos por período: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public long countAtivos() {
+        try {
+            return emprestimoDAO.findAtivos().size();
+        } catch (SQLException e) {
+            System.err.println("Erro ao contar empréstimos ativos: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    @Override
+    public long countAtrasados() {
+        try {
+            return emprestimoDAO.findAtrasados().size();
+        } catch (SQLException e) {
+            System.err.println("Erro ao contar empréstimos atrasados: " + e.getMessage());
+            return 0;
         }
     }
 }

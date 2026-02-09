@@ -3,6 +3,8 @@ module isptec.biblioteca {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.net.http;
+    requires java.sql;
+    requires com.zaxxer.hikari;
 
     opens isptec.biblioteca to javafx.graphics;
     opens isptec.biblioteca.views to javafx.fxml;

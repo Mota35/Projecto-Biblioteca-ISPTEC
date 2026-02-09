@@ -40,25 +40,24 @@ public class LivroServiceImpl implements LivroService {
     public void removerLivro(String isbn) {
         Livro livro = buscarLivroPorIsbn(isbn);
         if (livro != null) {
-            livroRepository.delete(livro.getId());
+            livroRepository.deleteById(livro.getId());
         }
     }
 
     @Override
     public void removerLivroPorId(int id) {
-        livroRepository.delete(id);
+        livroRepository.deleteById(id);
     }
 
     @Override
     public Livro buscarLivroPorIsbn(String isbn) {
         if (isbn == null) return null;
         return livroRepository.findByIsbn(isbn);
-                .filter(l -> l.getIsbn() != null && l.getIsbn().equals(isbn))
     }
 
     @Override
     public Livro buscarLivroPorId(int id) {
-        return livroRepository.findById(id);
+        return livroRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -121,6 +120,6 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     public int contarLivrosDisponiveis() {
-        return (int) livroRepository.findDisponiveis().size();
+        return livroRepository.findDisponiveis().size();
     }
 }
