@@ -1,0 +1,330 @@
+/* ============================================
+   BIBLIOTECA ISPTEC - TEMA AESTHETIC
+   Design moderno com gradientes e sombras
+   ============================================ */
+
+/* === CORES PRINCIPAIS === */
+:root {
+    -primary-color: #6366f1;
+    -primary-dark: #4f46e5;
+    -primary-light: #818cf8;
+    -secondary-color: #ec4899;
+    -accent-color: #14b8a6;
+    -background-color: #f8fafc;
+    -card-color: #ffffff;
+    -text-primary: #1e293b;
+    -text-secondary: #64748b;
+    -border-color: #e2e8f0;
+    -success-color: #22c55e;
+    -warning-color: #f59e0b;
+    -error-color: #ef4444;
+}
+
+/* === FUNDO PRINCIPAL === */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f8fafc, #e0e7ff);
+    -fx-font-family: "Segoe UI", "SF Pro Display", system;
+}
+
+/* === CARDS === */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 20, 0, 0, 4);
+    -fx-padding: 24;
+}
+
+.card-hover:hover {
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.2), 25, 0, 0, 8);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* === BOTÕES === */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #6366f1, #8b5cf6);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.4), 10, 0, 0, 3);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #4f46e5, #7c3aed);
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.6), 15, 0, 0, 5);
+}
+
+.btn-secondary {
+    -fx-background-color: white;
+    -fx-text-fill: #6366f1;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 8;
+    -fx-border-color: #6366f1;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #f5f3ff;
+}
+
+.btn-success {
+    -fx-background-color: linear-gradient(to right, #22c55e, #16a34a);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.btn-danger {
+    -fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* === CAMPOS DE TEXTO === */
+.text-field-modern {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16;
+    -fx-font-size: 14px;
+}
+
+.text-field-modern:focused {
+    -fx-border-color: #6366f1;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.2), 10, 0, 0, 0);
+}
+
+/* === SIDEBAR === */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #1e1b4b, #312e81);
+    -fx-padding: 20;
+}
+
+.sidebar-menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255,255,255,0.7);
+    -fx-font-size: 14px;
+    -fx-padding: 12 16;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.sidebar-menu-item:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-text-fill: white;
+}
+
+.sidebar-menu-item-active {
+    -fx-background-color: linear-gradient(to right, #6366f1, #8b5cf6);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 16;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.5), 10, 0, 0, 2);
+}
+
+/* === TABELAS === */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8fafc;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-padding: 12;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #ede9fe;
+}
+
+/* === LABELS === */
+.title-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #6366f1, #8b5cf6);
+}
+
+.subtitle-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #64748b;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+/* === STAT CARDS === */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 15, 0, 0, 4);
+}
+
+.stat-card-purple {
+    -fx-background-color: linear-gradient(to bottom right, #6366f1, #8b5cf6);
+}
+
+.stat-card-pink {
+    -fx-background-color: linear-gradient(to bottom right, #ec4899, #f472b6);
+}
+
+.stat-card-teal {
+    -fx-background-color: linear-gradient(to bottom right, #14b8a6, #2dd4bf);
+}
+
+.stat-card-orange {
+    -fx-background-color: linear-gradient(to bottom right, #f59e0b, #fbbf24);
+}
+
+/* === SCROLLBAR === */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #94a3b8;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* === BADGES === */
+.badge-success {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #166534;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-warning {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #92400e;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-error {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-info {
+    -fx-background-color: #e0e7ff;
+    -fx-text-fill: #3730a3;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* === ANIMAÇÕES === */
+.fade-in {
+    -fx-opacity: 0;
+}
+
+/* === LIVRO CARD === */
+.book-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 4);
+    -fx-padding: 0;
+}
+
+.book-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(99,102,241,0.25), 20, 0, 0, 8);
+}
+
+.book-cover {
+    -fx-background-color: linear-gradient(to bottom right, #6366f1, #a855f7);
+    -fx-background-radius: 12 12 0 0;
+}
+
+/* === SEARCH BAR === */
+.search-bar {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-padding: 8 20;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+.search-bar:focused {
+    -fx-border-color: #6366f1;
+}
+
+/* === TOAST/NOTIFICATIONS === */
+.toast-success {
+    -fx-background-color: #22c55e;
+    -fx-text-fill: white;
+    -fx-padding: 16 24;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(34,197,94,0.4), 15, 0, 0, 4);
+}
+
+.toast-error {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-padding: 16 24;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.4), 15, 0, 0, 4);
+}
+

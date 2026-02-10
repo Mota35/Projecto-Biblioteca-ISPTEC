@@ -99,9 +99,18 @@ public class DashboardAdminView {
         Button chatbotBtn = createMenuButton("💬 Chatbot", false);
         chatbotBtn.setOnAction(e -> new ChatbotView(stage, mainLayout).show());
 
+        Button notificacoesBtn = createMenuButton("🔔 Notificações", false);
+        notificacoesBtn.setOnAction(e -> new NotificacoesView(stage, mainLayout).show());
+
+        Button configBtn = createMenuButton("⚙️ Configurações", false);
+        configBtn.setOnAction(e -> new ConfiguracoesView(stage, mainLayout).show());
+
+        Button sobreBtn = createMenuButton("ℹ️ Sobre", false);
+        sobreBtn.setOnAction(e -> new SobreView(stage, mainLayout).show());
+
         menuBox.getChildren().addAll(
             dashboardBtn, livrosBtn, membrosBtn, emprestimosBtn, 
-            reservasBtn, relatoriosBtn, chatbotBtn
+            reservasBtn, relatoriosBtn, chatbotBtn, notificacoesBtn, configBtn, sobreBtn
         );
 
         // Spacer

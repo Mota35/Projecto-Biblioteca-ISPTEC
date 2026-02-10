@@ -88,10 +88,19 @@ public class DashboardUserView {
         Button chatbotBtn = createMenuButton("💬 Chatbot", false);
         chatbotBtn.setOnAction(e -> new ChatbotView(stage, mainLayout).show());
         
+        Button notificacoesBtn = createMenuButton("🔔 Notificações", false);
+        notificacoesBtn.setOnAction(e -> new NotificacoesView(stage, mainLayout).show());
+
         Button perfilBtn = createMenuButton("👤 Perfil", false);
         perfilBtn.setOnAction(e -> new PerfilUserView(stage, mainLayout).show());
 
-        menuBox.getChildren().addAll(dashboardBtn, catalogoBtn, reservasBtn, chatbotBtn, perfilBtn);
+        Button configBtn = createMenuButton("⚙️ Configurações", false);
+        configBtn.setOnAction(e -> new ConfiguracoesView(stage, mainLayout).show());
+
+        Button sobreBtn = createMenuButton("ℹ️ Sobre", false);
+        sobreBtn.setOnAction(e -> new SobreView(stage, mainLayout).show());
+
+        menuBox.getChildren().addAll(dashboardBtn, catalogoBtn, reservasBtn, chatbotBtn, notificacoesBtn, perfilBtn, configBtn, sobreBtn);
 
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
